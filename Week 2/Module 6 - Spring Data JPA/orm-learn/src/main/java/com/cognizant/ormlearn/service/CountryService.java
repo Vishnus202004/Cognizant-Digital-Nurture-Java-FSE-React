@@ -30,26 +30,26 @@ public class CountryService {
         throw new CountryNotFoundException("Country not found with code: " + countryCode);
     }
 
-    // Hands-on 8: Save a new Country
+  
     @Transactional
     public void addCountry(Country country) {
         countryRepository.save(country);
     }
 
-    // Hands-on 9: Update an existing country's name
+   
     @Transactional
     public void updateCountry(String code, String name) throws CountryNotFoundException {
         Optional<Country> result = countryRepository.findById(code);
         if (result.isPresent()) {
             Country country = result.get();
             country.setName(name);
-            countryRepository.save(country); // Overwrites existing state
+            countryRepository.save(country); 
         } else {
             throw new CountryNotFoundException("Country not found for update with code: " + code);
         }
     }
 
-    // Hands-on 10: Delete a country by its primary key
+
     @Transactional
     public void deleteCountry(String code) {
         countryRepository.deleteById(code);
